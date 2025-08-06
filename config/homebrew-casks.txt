@@ -1,0 +1,4 @@
+# GUI Applications
+visual-studio-code
+claude
+slack

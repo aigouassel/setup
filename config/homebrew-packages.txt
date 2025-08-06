@@ -1,0 +1,45 @@
+# Essential development tools
+git
+node
+fzf
+ripgrep
+jq
+fd
+
+# Terminal enhancements
+tmux
+bat
+exa
+htop
+glances
+neofetch
+
+# Programming languages and runtimes
+python
+go
+
+# Version managers
+nvm
+pyenv
+
+# Cloud and infrastructure tools
+awscli
+terraform
+kubectl
+
+# Database tools
+postgresql
+redis
+neo4j
+
+# Container tools
+docker
+docker-compose
+
+# Utilities
+wget
+curl
+tree
+ssh-copy-id
+watch
+vim

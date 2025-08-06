@@ -1,0 +1,59 @@
+# Global Git configuration
+
+[user]
+    # Set these values as your identifiers
+    name = Audrey
+    email = audreyigouassel@gmail.com
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
+    whitespace = trailing-space,space-before-tab
+    pager = less -FRX
+
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[init]
+    defaultBranch = main
+
+[push]
+    default = simple
+    followTags = true
+    autoSetupRemote = true
+
+[pull]
+    rebase = false
+
+[fetch]
+    prune = true
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+    
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    
+# [alias] section removed - using ZSH aliases from aliases/git-aliases.zsh instead
+
+[help]
+    autocorrect = 20
+
+[credential]
+    helper = cache --timeout=3600
+
+[rebase]
+    autosquash = true
+    
+[url "https://github.com/aigouassel/"]
+    insteadOf = gh:
+
+[web]
+    browser = open

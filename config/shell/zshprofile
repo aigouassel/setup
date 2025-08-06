@@ -1,0 +1,96 @@
+# ================================================================
+# ZSH Profile - Environment Variables & System Configuration
+# ================================================================
+# This file is sourced for login shells and sets up the environment
+# before .zshrc is loaded. It's the place for system-wide settings.
+
+# ================================================================
+# Package Manager - Homebrew
+# ================================================================
+# Homebrew paths (handles both Apple Silicon M1/M2 and Intel Macs)
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+  # Apple Silicon Macs (M1/M2)
+  export HOMEBREW_PREFIX="/opt/homebrew"
+  export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+  # Add Homebrew's Python site-packages (adjust version as needed)
+  export PATH="$HOMEBREW_PREFIX/lib/python3.11/site-packages:$PATH"
+elif [[ -f "/usr/local/bin/brew" ]]; then
+  # Intel Macs (fallback)
+  export HOMEBREW_PREFIX="/usr/local"
+  export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+fi
+
+# ================================================================
+# Default Applications
+# ================================================================
+# Default text editor (options: vim, nano, code, subl, etc.)
+export EDITOR='vim'
+export VISUAL='vim'
+
+# Default browser (uncomment and modify as needed)
+# export BROWSER='open'  # macOS default
+# export BROWSER='google-chrome'
+# export BROWSER='firefox'
+
+# ================================================================
+# Locale & Language Settings
+# ================================================================
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+# Alternative locales:
+# export LANG=en_GB.UTF-8  # British English
+# export LANG=fr_FR.UTF-8  # French
+
+# ================================================================
+# Command History Settings
+# ================================================================
+export HISTSIZE=10000        # Commands to keep in memory
+export SAVEHIST=10000        # Commands to save to history file
+export HISTFILE="$HOME/.zsh_history"
+
+# ================================================================
+# Pager Configuration (Less)
+# ================================================================
+export LESS='-R'                    # Interpret color sequences
+export LESSHISTFILE='/dev/null'     # Don't save less history
+# Additional less options:
+# export LESS='-R -i -M -S -x4'     # Raw colors, ignore case, verbose, chop long lines, tab=4
+
+# ================================================================
+# Development Tool Environment Variables
+# ================================================================
+
+# Docker configuration
+export DOCKER_BUILDKIT=1            # Enable BuildKit for faster builds
+
+# Node.js & NPM configuration
+# export NPM_CONFIG_PREFIX="$HOME/.npm-global"  # Global npm packages location
+
+# Python configuration
+# export PYTHONPATH="$HOME/python-libs:$PYTHONPATH"  # Additional Python module paths
+
+# Java configuration (uncomment if using Java)
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home"
+
+# Go configuration (uncomment if using Go)
+# export GOPATH="$HOME/go"
+# export GOROOT="/usr/local/go"
+
+# ================================================================
+# Security & Performance Settings
+# ================================================================
+
+# GPG TTY (for Git commit signing)
+export GPG_TTY=$(tty)
+
+# Disable Homebrew analytics (privacy)
+export HOMEBREW_NO_ANALYTICS=1
+
+# Enable colored output for various tools
+export CLICOLOR=1
+
+# ================================================================
+# Load Shell Configuration
+# ================================================================
+# Source .zshrc if it exists (loads Oh-My-Zsh and user customizations)
+[ -r ~/.zshrc ] && source ~/.zshrc

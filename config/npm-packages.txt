@@ -1,0 +1,5 @@
+# Global npm packages
+jest
+nx
+prettier
+@types/node
