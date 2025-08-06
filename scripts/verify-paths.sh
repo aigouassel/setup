@@ -2,8 +2,9 @@
 
 # PATH verification script - ensures all installed tools are accessible
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
 
 verify_paths() {
     log_section "Verifying Tool Accessibility"

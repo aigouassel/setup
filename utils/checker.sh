@@ -2,7 +2,8 @@
 
 # Package existence checker utilities
 
-source "$(dirname "$0")/logger.sh"
+CHECKER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+source "$CHECKER_DIR/logger.sh"
 
 # Check if Homebrew is installed
 check_homebrew() {

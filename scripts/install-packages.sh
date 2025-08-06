@@ -2,9 +2,10 @@
 
 # Package installation script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
-source "$SCRIPT_DIR/../utils/checker.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
+source "$SETUP_ROOT/utils/checker.sh"
 
 install_homebrew_packages() {
     log_section "Installing Homebrew Packages"
@@ -32,7 +33,7 @@ install_homebrew_packages() {
                 log_error "Failed to install $package"
             fi
         fi
-    done < "$SCRIPT_DIR/../config/homebrew-packages.txt"
+    done < "$SETUP_ROOT/config/homebrew-packages.txt"
     
     add_spacing
 }
@@ -63,7 +64,7 @@ install_homebrew_casks() {
                 log_error "Failed to install $cask"
             fi
         fi
-    done < "$SCRIPT_DIR/../config/homebrew-casks.txt"
+    done < "$SETUP_ROOT/config/homebrew-casks.txt"
     
     add_spacing
 }
@@ -100,7 +101,7 @@ install_npm_packages() {
                 log_error "Failed to install $package"
             fi
         fi
-    done < "$SCRIPT_DIR/../config/npm-packages.txt"
+    done < "$SETUP_ROOT/config/npm-packages.txt"
     
     add_spacing
 }

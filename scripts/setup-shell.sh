@@ -2,8 +2,9 @@
 
 # Shell configuration setup script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
 
 setup_shell_config() {
     log_section "Setting up Shell Configuration"
@@ -23,17 +24,17 @@ setup_shell_config() {
     
     # Copy shell configuration files
     log_step "Installing custom .zshrc..."
-    cp "$SCRIPT_DIR/../config/shell/zshrc" "$HOME/.zshrc"
+    cp "$SETUP_ROOT/config/shell/zshrc" "$HOME/.zshrc"
     log_success ".zshrc installed successfully"
     
     log_step "Installing custom .zshprofile..."
-    cp "$SCRIPT_DIR/../config/shell/zshprofile" "$HOME/.zshprofile"
+    cp "$SETUP_ROOT/config/shell/zshprofile" "$HOME/.zshprofile"
     log_success ".zshprofile installed successfully"
     
     # Add aliases to the new .zshrc
     log_step "Adding aliases to .zshrc..."
-    local git_aliases="$SCRIPT_DIR/../aliases/git-aliases.zsh"
-    local general_aliases="$SCRIPT_DIR/../aliases/general-aliases.zsh"
+    local git_aliases="$SETUP_ROOT/aliases/git-aliases.zsh"
+    local general_aliases="$SETUP_ROOT/aliases/general-aliases.zsh"
     
     cat >> "$HOME/.zshrc" << EOF
 

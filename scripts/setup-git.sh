@@ -2,8 +2,9 @@
 
 # Git configuration setup script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
 
 setup_git_config() {
     log_section "Setting up Git Configuration"
@@ -23,8 +24,8 @@ setup_git_config() {
     
     # Copy Git configuration files
     log_step "Installing Git configuration files..."
-    cp "$SCRIPT_DIR/../config/git/gitconfig" "$HOME/.gitconfig"
-    cp "$SCRIPT_DIR/../config/git/gitignore_global" "$HOME/.gitignore_global"
+    cp "$SETUP_ROOT/config/git/gitconfig" "$HOME/.gitconfig"
+    cp "$SETUP_ROOT/config/git/gitignore_global" "$HOME/.gitignore_global"
     
     log_success "Git configuration files installed successfully"
     log_info "Your Git is configured with:"

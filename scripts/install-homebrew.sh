@@ -2,9 +2,10 @@
 
 # Homebrew installation script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
-source "$SCRIPT_DIR/../utils/checker.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
+source "$SETUP_ROOT/utils/checker.sh"
 
 install_homebrew() {
     log_section "Checking Homebrew"

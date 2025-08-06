@@ -2,15 +2,16 @@
 
 # Shell aliases setup script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$SCRIPT_DIR/../utils/logger.sh"
+# Get the absolute path to the setup root directory
+SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
+source "$SETUP_ROOT/utils/logger.sh"
 
 setup_aliases() {
     log_section "Setting up Shell Aliases"
     
     local zshrc="$HOME/.zshrc"
-    local git_aliases="$SCRIPT_DIR/../aliases/git-aliases.zsh"
-    local general_aliases="$SCRIPT_DIR/../aliases/general-aliases.zsh"
+    local git_aliases="$SETUP_ROOT/aliases/git-aliases.zsh"
+    local general_aliases="$SETUP_ROOT/aliases/general-aliases.zsh"
     
     # Check if .zshrc exists
     if [ ! -f "$zshrc" ]; then
