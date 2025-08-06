@@ -1,0 +1,52 @@
+[
+  // Duplicate line
+  {
+    "key": "cmd+shift+d",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  // Delete line
+  {
+    "key": "cmd+shift+k",
+    "command": "editor.action.deleteLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  // Move line up/down
+  {
+    "key": "alt+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  // Toggle sidebar
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  // Toggle terminal
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  // Quick file navigation
+  {
+    "key": "cmd+p",
+    "command": "workbench.action.quickOpen"
+  },
+  // Format document
+  {
+    "key": "cmd+shift+o",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  // Apply lint fixes (ESLint auto-fix)
+  {
+    "key": "cmd+shift+p",
+    "command": "eslint.executeAutofix",
+    "when": "editorTextFocus && !editorReadonly"
+  }
+]

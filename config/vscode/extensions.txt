@@ -1,0 +1,31 @@
+# Languages
+ms-python.python
+ms-python.vscode-pylance
+golang.go
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+
+# Infrastructure
+ms-azuretools.vscode-docker
+ms-kubernetes-tools.vscode-kubernetes-tools
+hashicorp.terraform
+amazonwebservices.aws-toolkit-vscode
+
+# Git & GitHub
+eamodio.gitlens
+anthropics.claude-code
+github.vscode-github-actions
+
+# Utilities
+christian-kohler.path-intellisense
+formulahendry.auto-rename-tag
+gruntfuggly.todo-tree
+mechatroner.rainbow-csv
+ritwickdey.liveserver
+nrwl.angular-console
+
+# File Support
+mikestead.dotenv
+alexkrechik.cucumberautocomplete
+GraphQL.vscode-graphql
+ms-vscode.makefile-tools

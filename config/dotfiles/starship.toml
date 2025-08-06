@@ -1,0 +1,141 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$aws\
+$kubernetes
+$character"""
+
+[character]
+success_symbol = "[✘](bold #FFFFFF)"
+error_symbol = "[✘](bold #FF0000)"
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+style = "bold #3595FF"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = "🌿 "
+format = "[on $symbol$branch(:$remote_branch)]($style) "
+style = "bold #FFFFFF"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold #FFFFFF"
+conflicted = "🏳"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = "✓"
+untracked = "?${count}"
+stashed = "s${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[git_commit]
+commit_hash_length = 7
+format = "[$hash$tag]($style) "
+style = "bold #FFFFFF"
+only_detached = true
+tag_disabled = false
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
+symbol = "⎈ "
+style = "bold #9560FF"
+
+# Detect kubernetes config
+detect_files = ['k8s', 'Dockerfile', 'skaffold.yaml', 'helm']
+detect_extensions = ['yaml', 'yml']
+detect_folders = ['.kube', 'kubernetes', 'k8s']
+
+# Context aliases - migrated to new format
+# Teleport contexts
+[[kubernetes.contexts]]
+context_pattern = "payfit.teleport.sh-staging"
+context_alias = "staging"
+
+[[kubernetes.contexts]]
+context_pattern = "payfit.teleport.sh-prod"
+context_alias = "prod"
+
+[[kubernetes.contexts]]
+context_pattern = "payfit.teleport.sh-dev"
+context_alias = "dev"
+
+# Generic patterns
+[[kubernetes.contexts]]
+context_pattern = "dev.local.cluster.k8s"
+context_alias = "dev"
+
+[[kubernetes.contexts]]
+context_pattern = "staging.local.cluster.k8s"
+context_alias = "staging"
+
+[[kubernetes.contexts]]
+context_pattern = "production.local.cluster.k8s"
+context_alias = "prod"
+
+# Cloud provider patterns with regex
+[[kubernetes.contexts]]
+context_pattern = 'arn:aws:eks:.*:.*:cluster/(?P<var_cluster>[\w-]+)'
+context_alias = "eks-$var_cluster"
+
+[[kubernetes.contexts]]
+context_pattern = 'gke_.*_(?P<var_cluster>[\w-]+)'
+context_alias = "gke-$var_cluster"
+
+# Local development
+[[kubernetes.contexts]]
+context_pattern = "docker-desktop"
+context_alias = "local"
+
+[[kubernetes.contexts]]
+context_pattern = "minikube"
+context_alias = "mini"
+
+# User aliases - add to specific contexts if needed
+# If you want these to apply globally, add them to each context above
+# Example for dev-user:
+# [[kubernetes.contexts]]
+# context_pattern = ".*"  # matches any context
+# user_pattern = "dev-user"
+# user_alias = "dev"
+
+[gcloud]
+disabled = false
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+style = "bold #4285F4"
+
+[gcloud.account_aliases]
+"audreyigouassel@gmail.com" = "perso"
+"audrey.igouassel@payfit.com" = "payfit"
+
+[nodejs]
+disabled = false
+format = "[$symbol($version )]($style)"
+symbol = "⬢ "
+style = "bold #00D787"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+[aws]
+disabled = false
+format = '[$symbol$profile(\($region\))]($style) '
+symbol = "☁️  "
+style = "bold #EDB050"
+[aws.region_aliases]
+us-east-1 = "use1"
+us-west-2 = "usw2"
+eu-west-1 = "euw1"
+eu-central-1 = "euc1"
+[aws.profile_aliases]
+"default" = "staging"

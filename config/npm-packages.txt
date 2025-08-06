@@ -1,0 +1,6 @@
+# Global NPM packages to install
+# One package per line, comments allowed
+
+nx
+prettier
+@types/node

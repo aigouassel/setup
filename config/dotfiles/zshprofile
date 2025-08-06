@@ -1,0 +1,14 @@
+# ~/.zshprofile - Shell environment configuration
+# Loaded before .zshrc for login shells
+
+# Force 24-bit truecolor support
+export COLORTERM=truecolor
+
+# Homebrew PATH setup
+if [[ -d "/opt/homebrew" ]]; then
+    # M1/M2/M3 Macs
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -d "/usr/local/Homebrew" ]]; then
+    # Intel Macs
+    eval "$(/usr/local/bin/brew shellenv)"
+fi

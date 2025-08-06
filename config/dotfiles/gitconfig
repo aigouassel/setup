@@ -1,0 +1,24 @@
+[user]
+	name = Audrey
+	email = audreyigouassel@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	autocrlf = input
+
+[pull]
+	rebase = false
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[color]
+	ui = auto
+
+[alias]
+	# Basic shortcuts handled by Oh-My-Zsh git plugin

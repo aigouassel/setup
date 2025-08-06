@@ -1,0 +1,57 @@
+# Homebrew packages to install
+# One package per line, comments allowed
+
+# Priority packages (installed first in specific order)
+starship
+node
+gh
+
+# Development tools
+git
+git-delta
+fzf
+ripgrep
+jq
+fd
+
+# Terminal enhancements
+tmux
+bat
+htop
+glances
+neofetch
+zsh-autosuggestions
+
+# Programming languages
+python
+go
+
+# Version managers
+nvm
+
+# Cloud/infrastructure tools
+awscli
+localstack
+terraform
+kubectl
+kubectx
+minikube
+gcloud-cli
+
+# Database tools
+postgresql
+redis
+neo4j
+
+# Container tools
+docker
+docker-compose
+colima
+
+# Utilities
+wget
+curl
+tree
+ssh-copy-id
+watch
+vim
