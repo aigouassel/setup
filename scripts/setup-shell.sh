@@ -31,16 +31,22 @@ setup_shell_config() {
     cp "$SETUP_ROOT/config/shell/zshprofile" "$HOME/.zshprofile"
     log_success ".zshprofile installed successfully"
     
-    # Add aliases to the new .zshrc
-    log_step "Adding aliases to .zshrc..."
+    # Copy aliases to persistent location
+    log_step "Copying aliases to ~/.config/git/aliases/..."
     local git_aliases="$SETUP_ROOT/aliases/git-aliases.zsh"
     local general_aliases="$SETUP_ROOT/aliases/general-aliases.zsh"
+    mkdir -p "$HOME/.config/git/aliases"
+    cp "$git_aliases" "$HOME/.config/git/aliases/git-aliases.zsh"
+    cp "$general_aliases" "$HOME/.config/git/aliases/general-aliases.zsh"
+    log_success "Aliases copied to ~/.config/git/aliases/"
     
+    # Add aliases to the new .zshrc
+    log_step "Adding aliases to .zshrc..."
     cat >> "$HOME/.zshrc" << EOF
 
 # Custom aliases
-source "$git_aliases"
-source "$general_aliases"
+source "$HOME/.config/git/aliases/git-aliases.zsh"
+source "$HOME/.config/git/aliases/general-aliases.zsh"
 # End custom aliases
 EOF
     

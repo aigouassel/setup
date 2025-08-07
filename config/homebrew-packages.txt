@@ -9,7 +9,6 @@ fd
 # Terminal enhancements
 tmux
 bat
-exa
 htop
 glances
 neofetch

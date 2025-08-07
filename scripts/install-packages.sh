@@ -7,6 +7,37 @@ SETUP_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)"
 source "$SETUP_ROOT/utils/logger.sh"
 source "$SETUP_ROOT/utils/checker.sh"
 
+configure_version_manager() {
+    local package="$1"
+    
+    case "$package" in
+        "pyenv")
+            log_step "Configuring pyenv for current session..."
+            if [[ -s "/opt/homebrew/opt/pyenv/bin/pyenv" ]]; then
+                export PYENV_ROOT="$HOME/.pyenv"
+                export PATH="/opt/homebrew/opt/pyenv/bin:$PATH"
+                eval "$(pyenv init --path)"
+                eval "$(pyenv init -)"
+                log_success "Pyenv configured and accessible"
+            elif [[ -s "/usr/local/opt/pyenv/bin/pyenv" ]]; then
+                export PYENV_ROOT="$HOME/.pyenv"
+                export PATH="/usr/local/opt/pyenv/bin:$PATH"
+                eval "$(pyenv init --path)"
+                eval "$(pyenv init -)"
+                log_success "Pyenv configured and accessible"
+            fi
+            ;;
+        "nvm")
+            log_step "Configuring NVM for current session..."
+            export NVM_DIR="$HOME/.nvm"
+            if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+                source "/opt/homebrew/opt/nvm/nvm.sh"
+                log_success "NVM configured and accessible"
+            fi
+            ;;
+    esac
+}
+
 install_homebrew_packages() {
     log_section "Installing Homebrew Packages"
     
@@ -33,6 +64,9 @@ install_homebrew_packages() {
                 log_error "Failed to install $package"
             fi
         fi
+        
+        # Configure version managers immediately after installation
+        configure_version_manager "$package"
     done < "$SETUP_ROOT/config/homebrew-packages.txt"
     
     add_spacing

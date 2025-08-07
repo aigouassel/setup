@@ -36,7 +36,7 @@ This repository contains a complete automated setup script for configuring a new
 git, node, fzf, ripgrep, jq, fd
 
 # Terminal enhancements  
-tmux, bat, exa, htop, glances, neofetch
+tmux, bat, htop, glances, neofetch
 
 # Programming languages
 python, go

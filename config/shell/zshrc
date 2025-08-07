@@ -99,8 +99,21 @@ fi
 # Python Version Manager (Pyenv)
 # Installation: brew install pyenv
 # Usage: pyenv install <version>, pyenv global <version>, pyenv local <version>
-export PYENV_ROOT="$HOME/.pyenv"
-if command -v pyenv >/dev/null 2>&1; then
+if [[ -s "/opt/homebrew/opt/pyenv/bin/pyenv" ]]; then
+  # Apple Silicon Mac with Homebrew pyenv
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="/opt/homebrew/opt/pyenv/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+elif [[ -s "/usr/local/opt/pyenv/bin/pyenv" ]]; then
+  # Intel Mac with Homebrew pyenv
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="/usr/local/opt/pyenv/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+elif [[ -d "$HOME/.pyenv" ]]; then
+  # Manual pyenv installation
+  export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"

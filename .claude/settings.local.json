@@ -7,7 +7,12 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(source:*)",
-      "Bash(./setup.sh:*)"
+      "Bash(./setup.sh:*)",
+      "Bash(rm:*)",
+      "Bash(brew list:*)",
+      "Bash(brew:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

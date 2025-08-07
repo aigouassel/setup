@@ -31,7 +31,6 @@ cd .. && rm -rf setup
 - **jq**: JSON processor
 - **fd**: Fast file finder
 - **bat**: Better cat with syntax highlighting
-- **exa**: Better ls
 - **tmux**: Terminal multiplexer
 - **htop, glances, neofetch**: System monitoring
 - **tree, wget, curl, vim**: Essential utilities

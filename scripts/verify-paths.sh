@@ -9,12 +9,44 @@ source "$SETUP_ROOT/utils/logger.sh"
 verify_paths() {
     log_section "Verifying Tool Accessibility"
     
-    # Source the new shell configuration to test paths
-    if [ -f "$HOME/.zshprofile" ]; then
-        source "$HOME/.zshprofile"
+    # Manually configure PATH (avoid sourcing shell files that load Oh-My-Zsh)
+    
+    # Homebrew paths (handles both Apple Silicon M1/M2 and Intel Macs)
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+        export HOMEBREW_PREFIX="/opt/homebrew"
+        export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+    elif [[ -f "/usr/local/bin/brew" ]]; then
+        export HOMEBREW_PREFIX="/usr/local"
+        export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
     fi
-    if [ -f "$HOME/.zshrc" ]; then
-        source "$HOME/.zshrc"
+    
+    # Custom PATH additions
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
+    export PATH="/usr/local/sbin:$PATH"
+    
+    # NVM configuration
+    export NVM_DIR="$HOME/.nvm"
+    if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+        source "/opt/homebrew/opt/nvm/nvm.sh"
+    fi
+    
+    # Pyenv configuration  
+    if [[ -s "/opt/homebrew/opt/pyenv/bin/pyenv" ]]; then
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="/opt/homebrew/opt/pyenv/bin:$PATH"
+        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
+    elif [[ -s "/usr/local/opt/pyenv/bin/pyenv" ]]; then
+        export PYENV_ROOT="$HOME/.pyenv" 
+        export PATH="/usr/local/opt/pyenv/bin:$PATH"
+        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
+    fi
+    
+    # Docker Desktop CLI tools
+    if [ -d "/Applications/Docker.app" ]; then
+        export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
     fi
     
     # Tools to verify
@@ -71,8 +103,11 @@ verify_paths() {
     # Test Pyenv
     if command -v pyenv >/dev/null 2>&1; then
         log_success "Pyenv is functional ($(pyenv --version))"
+    elif [[ -s "/opt/homebrew/opt/pyenv/bin/pyenv" ]] || [[ -s "/usr/local/opt/pyenv/bin/pyenv" ]]; then
+        log_warning "Pyenv is installed but not accessible in current PATH"
+        log_info "  → Will be available after restarting terminal or sourcing ~/.zshrc"
     else
-        log_warning "Pyenv not accessible"
+        log_warning "Pyenv not accessible in PATH"
     fi
     
     add_spacing
